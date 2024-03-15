@@ -5,7 +5,7 @@ import axios from "axios";
 import ProductForm from "@/components/ProductForm";
 
 export default function EditProductPage() {
-    const [productInfo, setProductInfo] = useState(null)
+    const [productInfo, setProductInfo] = useState(null) // of type {_id: "65ef50cd", title: "some title", description: "some desc", price: 23}
     const router = useRouter()
     const id = router.query.id
 
@@ -24,7 +24,7 @@ export default function EditProductPage() {
     <Layout>
         <h1>Edit Product</h1>
         {productInfo && (               
-            <ProductForm {...productInfo}/> 
+            <ProductForm {...productInfo}/> // We can pass in objects for props instead of individual variables like title=title description=description
         )} {/* Use ProductForm component only if productInfo is not null */}
         
     </Layout>

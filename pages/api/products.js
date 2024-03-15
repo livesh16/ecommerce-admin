@@ -1,7 +1,7 @@
 import { mongooseConnect } from "@/lib/mongoose"
 import {Product} from "@/models/Product"
 
-export default async function handle(req, res){
+export default async function handler(req, res){
     const method = req.method
     await mongooseConnect()
 
@@ -15,17 +15,17 @@ export default async function handle(req, res){
     }
 
     if (method === 'POST') {
-        const {title, description, price} = req.body
+        const {title, description, price, images} = req.body
         const productDoc = await Product.create({ // create is what creates the document and saves it to the database
-            title, description, price
+            title, description, price, images
         })
         //console.log(productDoc)
         res.json(productDoc) // res means response
     }
 
     if (method === 'PUT') {
-        const {_id, title, description, price} = req.body
-        await Product.updateOne({_id}, {title, description, price}) // Or Product.updateOne({_id:_id}, {title: title, description: description, price: price})
+        const {_id, title, description, price, images} = req.body
+        await Product.updateOne({_id}, {title, description, price, images}) // Or Product.updateOne({_id:_id}, {title: title, description: description, price: price})
         res.json(true) // Everything is fine  
     }
 
